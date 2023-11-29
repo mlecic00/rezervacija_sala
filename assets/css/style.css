@@ -13,3 +13,7 @@
   .block{
     height: 100vh!important;
   }
+
+  h1 {
+    text-align: center;
+  }

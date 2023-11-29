@@ -13,7 +13,7 @@ console.log('jej')
             var user = data.users.find(u => u.email === email && u.password === password);
 
             if (user) {
-                alert('Dobro dosli, ' + user.name + '!');
+                //alert('Dobro dosli, ' + user.name + '!');
                 relocation();
             } else {
                 alert('Email ili Password nisu tacni. Pokusajte ponovo!');

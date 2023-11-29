@@ -1,32 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  	<title>Bukiranje sale</title>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <title>Bukiranje sale</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap CSS -->
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
     <!-- Bootstrap JS -->
-  	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
     <!-- Table Reservation Form -->
     <section id="book-a-table" class="book-a-table">
-        <div class="container" data-aos="fade-up">
-            <div class="row">
-    			<div class="col-md-8 offset-md-2 text-center">
-    				<h2 class="text-primary">Rezervacija sale</h2>
-    				<p class="mb-5">Rezervacija sale</p>
-    			</div>
-    		</div>
-
-            <form action="" method="post" role="form" >
-              <div class="form-row">
-                <div class="col-lg-4 col-md-6 form-group">
-                    <!-- <input type="text" name="sala" class="form-control" id="sala" placeholder="Sala"> -->
-                <!-- <label for="sala" class="form-control">Izaberite salu:</label>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-start">
+                <ul class="nav nav-tabs" id="navId" role="tablist">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link active"
+                        data-bs-toggle="tab"
+                        aria-current="page"
+                        >Navbar</a
+                      >
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >Dropdown</a
+                      >
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#tab2Id">Action</a>
+                        <a class="dropdown-item" href="#tab3Id">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#tab4Id">Action</a>
+                      </div>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a href="#tab5Id" class="nav-link" data-bs-toggle="tab">Another link</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a href="#" class="nav-link disabled" data-bs-toggle="tab">Disabled</a>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between">
+          <div class="col-md-8 offset-md-2 text-center">
+            <h2 class="text-primary">Rezervacija sale</h2>
+            <p class="mb-5">Rezervacija sale</p>
+        </div>
+        </div>
+        </div>
+        <form action="#"  role="form" onsubmit="skoci()">
+          <div class="form-row">
+            <div class="col-lg-4 col-md-6 form-group">
+              <!-- <input type="text" name="sala" class="form-control" id="sala" placeholder="Sala"> -->
+              <!-- <label for="sala" class="form-control">Izaberite salu:</label>
                     <select name="sala" id="sala">
                         <option value="101">101</option> 
                         <option value="108">108</option> 
@@ -34,41 +75,81 @@
                         <option value="205">209</option>    
                         <option value="305">305</option> 
                     </select> -->
-                    <select class="form-control" class="form-select" id="sala" aria-label="Default select example">
-                        <option selected>Sala</option>
-                        <option value="1">105</option>
-                        <option value="2">108</option>
-                        <option value="3">205</option>
-                        <option value="4">209</option>
-                        <option value="5">305</option>
-                    </select>
-                </div>
-                <div class="col-lg-4 col-md-6 form-group">
-                    <input type="text" class="form-control" name="ime" id="ime" placeholder="Ime">
-                </div>
-                <div class="col-lg-4 col-md-6 form-group">
-                    <input type="date" name="date" class="form-control" id="date" placeholder="Datum">
-                </div>
-                <div class="col-lg-4 col-md-6 form-group">
-                    <input type="time" class="form-control" name="time" id="time_1" placeholder="Od(vreme)">
-                </div>
-                <div class="col-lg-4 col-md-6 form-group">
-                    <input type="time" class="form-control" name="time" id="time_2" placeholder="Do(vreme)">
-                </div>
-                <div class="col-lg-4 col-md-6 form-group">
-                    <input type="text" class="form-control" name="razlog" id="razlog" placeholder="Razlog">
-                </div>
-              </div>
-              <div class="form-group">
-                    <textarea class="form-control" name="message" placeholder="Napomena"></textarea>
-              </div>
-              <button type="button" class="btn btn-primary float-right mt-3" onclick="add_element()">Rezervisi</button>
-              <!-- <button type="submit" class="btn btn-primary float-right mt-3" >Rezervisi</button> -->
-            </form>
-        </div>
+              <select
+                class="form-control"
+                class="form-select"
+                id="sala"
+                aria-label="Default select example"
+              >
+                <option selected>Sala</option>
+                <option value="1">105</option>
+                <option value="2">108</option>
+                <option value="3">205</option>
+                <option value="4">209</option>
+                <option value="5">305</option>
+              </select>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="ime"
+                id="ime"
+                placeholder="Ime"
+              />
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input
+                type="date"
+                name="date"
+                class="form-control"
+                id="date"
+                placeholder="Datum"
+              />
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input
+                type="time"
+                class="form-control"
+                name="time"
+                id="time_1"
+                placeholder="Od(vreme)"
+              />
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input
+                type="time"
+                class="form-control"
+                name="time"
+                id="time_2"
+                placeholder="Do(vreme)"
+              />
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="razlog"
+                id="razlog"
+                placeholder="Razlog"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              name="message"
+              placeholder="Napomena"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary float-right mt-3">
+            Rezervisi
+          </button>
+        </form>
+      </div>
     </section>
     <!-- End Table Reservation Form -->
-    <script src="./assets/js/script_reservation.js">
-    </script>
-</body>
+    <script src="./assets/js/script_reservation.js" />
+ 
+  </body>
 </html>
