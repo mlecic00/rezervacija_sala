@@ -1,0 +1,32 @@
+{
+    "reservations":[
+        {
+            "sale":"101",
+            "ime":"Milos Lecic",
+            "dan":"28/11/2023",
+            "od_vreme":"15:30",
+            "do_vreme":"16:00",
+            "razlog":"sastanak",
+            "napomena":"/"
+        },
+        {
+            "sale":"202",
+            "ime":"Jovan Jovanovic",
+            "dan":"29/11/2023",
+            "od_vreme":"15:30",
+            "do_vreme":"16:00",
+            "razlog":"sastanak",
+            "napomena":"/"
+    
+        },
+        {
+            "sale":"305",
+            "ime":"Petar Petrovic",
+            "dan":"30/11/2023",
+            "od_vreme":"15:30",
+            "do_vreme":"16:00",
+            "razlog":"sastanak",
+            "napomena":"/"
+        }   
+        ]
+}   
