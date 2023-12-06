@@ -24,7 +24,7 @@ console.log('jej')
 }
 
 const relocation = () => {
-    window.open("/pages/home.html")
+    window.location.replace("/pages/home.html")
 }
 // const login = () => {}
 

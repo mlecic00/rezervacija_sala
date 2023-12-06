@@ -1,9 +1,9 @@
 {
     "users":[
-        {"email": "ml123@gmail.com", "password": "pass1", "name": "Milos Lecic"},
-        {"email": "nk123@gmail.com", "password": "pass2", "name": "Nemanja Kasanov"},
-        {"email": "dt123@gmail.com", "password": "pass3", "name": "Dejan Trivunovic"},
-        {"email": "nj123@gmail.com", "password": "pass4", "name": "Nikola Jevric"},
-        {"email": "dd123@gmail.com", "password": "pass5", "name": "Dusan Dzinic"}
+        {"id": 1,"email": "ml123@gmail.com", "password": "pass1", "name": "Milos Lecic"},
+        {"id": 2,"email": "nk123@gmail.com", "password": "pass2", "name": "Nemanja Kasanov"},
+        {"id": 3,"email": "dt123@gmail.com", "password": "pass3", "name": "Dejan Trivunovic"},
+        {"id": 4,"email": "nj123@gmail.com", "password": "pass4", "name": "Nikola Jevric"},
+        {"id": 5,"email": "dd123@gmail.com", "password": "pass5", "name": "Dusan Dzinic"}
     ] 
 }

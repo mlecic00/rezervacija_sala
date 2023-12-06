@@ -1,32 +1,64 @@
 {
-    "reservations":[
-        {
-            "sale":"101",
-            "ime":"Milos Lecic",
-            "dan":"28/11/2023",
-            "od_vreme":"15:30",
-            "do_vreme":"16:00",
-            "razlog":"sastanak",
-            "napomena":"/"
-        },
-        {
-            "sale":"202",
-            "ime":"Jovan Jovanovic",
-            "dan":"29/11/2023",
-            "od_vreme":"15:30",
-            "do_vreme":"16:00",
-            "razlog":"sastanak",
-            "napomena":"/"
-    
-        },
-        {
-            "sale":"305",
-            "ime":"Petar Petrovic",
-            "dan":"30/11/2023",
-            "od_vreme":"15:30",
-            "do_vreme":"16:00",
-            "razlog":"sastanak",
-            "napomena":"/"
-        }   
-        ]
-}   
+  "reservations": [
+    {
+      "sala": "108",
+      "ime": "Milos Lecic",
+      "datum": "2024-03-22",
+      "dolazak": "15:00",
+      "odlazak": "16:00",
+      "razlog": "filteri",
+      "napomena": "Brzo",
+      "id": 1
+    },
+    {
+      "sala": "305",
+      "ime": "Milos Lecic",
+      "datum": "2023-12-21",
+      "dolazak": "15:30",
+      "odlazak": "16:00",
+      "razlog": "Stolovi",
+      "napomena": "/",
+      "id": 2
+    },
+    {
+      "sala": "209",
+      "ime": "Jovan Jovanovic",
+      "datum": "2024-04-01",
+      "dolazak": "12:00",
+      "odlazak": "13:00",
+      "razlog": "promocja",
+      "napomena": "/",
+      "id": 3
+    },
+    {
+      "sala": "105",
+      "ime": "Milos Lecic",
+      "datum": "2024-02-21",
+      "dolazak": "15:00",
+      "odlazak": "16:00",
+      "razlog": "filteri",
+      "napomena": "Brzo",
+      "id": 4
+    },
+    {
+      "sala": "105",
+      "ime": "Predrag",
+      "datum": "2023-12-27",
+      "dolazak": "13:15",
+      "odlazak": "14:00",
+      "razlog": "Vodoinstalater",
+      "napomena": "/",
+      "id": 5
+    },
+    {
+      "sala": "305",
+      "ime": "Nikola Jevric",
+      "datum": "2024-02-15",
+      "dolazak": "15:00",
+      "odlazak": "16:00",
+      "razlog": "Sastanak",
+      "napomena": "/",
+      "id": 6
+    }
+  ]
+}

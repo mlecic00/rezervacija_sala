@@ -19,7 +19,7 @@
     <section id="book-a-table" class="book-a-table">
       <div class="container" data-aos="fade-up">
         <div class="row">
-            <div class="col-12 d-flex justify-content-start">
+            <div class="col-12 d-flex justify-content-between">
                 <ul class="nav nav-tabs" id="navId" role="tablist">
                     <li class="nav-item">
                       <a
@@ -29,28 +29,8 @@
                         >Navbar</a
                       >
                     </li>
-                    <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Dropdown</a
-                      >
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#tab2Id">Action</a>
-                        <a class="dropdown-item" href="#tab3Id">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#tab4Id">Action</a>
-                      </div>
-                    </li>
                     <li class="nav-item" role="presentation">
-                      <a href="#tab5Id" class="nav-link" data-bs-toggle="tab">Another link</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <a href="#" class="nav-link disabled" data-bs-toggle="tab">Disabled</a>
+                      <a href="#" onclick="window.location.replace('../pages/home.html')" class="nav-link" data-bs-toggle="tab">Home</a>
                     </li>
                   </ul>
             </div>
@@ -63,67 +43,69 @@
         </div>
         </div>
         </div>
-        <form action="#"  role="form" onsubmit="skoci()">
+        <form action="#" id="myForm" role="form" onsubmit="visitCreate(event)">
           <div class="form-row">
             <div class="col-lg-4 col-md-6 form-group">
-              <!-- <input type="text" name="sala" class="form-control" id="sala" placeholder="Sala"> -->
-              <!-- <label for="sala" class="form-control">Izaberite salu:</label>
-                    <select name="sala" id="sala">
-                        <option value="101">101</option> 
-                        <option value="108">108</option> 
-                        <option value="202">205</option> 
-                        <option value="205">209</option>    
-                        <option value="305">305</option> 
-                    </select> -->
               <select
                 class="form-control"
                 class="form-select"
                 id="sala"
+                name="sala"
                 aria-label="Default select example"
               >
                 <option selected>Sala</option>
-                <option value="1">105</option>
-                <option value="2">108</option>
-                <option value="3">205</option>
-                <option value="4">209</option>
-                <option value="5">305</option>
+                <option value="105">105</option>
+                <option value="108">108</option>
+                <option value="205">205</option>
+                <option value="209">209</option>
+                <option value="305">305</option>
               </select>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
-              <input
+              <!-- <input
                 type="text"
                 class="form-control"
                 name="ime"
                 id="ime"
                 placeholder="Ime"
-              />
+              /> -->
+              <select
+              class="form-control"
+              class="form-select"
+              id="ime"
+              name="ime"
+              aria-label="Default select example"
+            >
+            <option selected>Ime</option>
+            <!-- <option disabled selected>Ime</option> -->
+            </select>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
                 type="date"
-                name="date"
+                name="datum"
                 class="form-control"
                 id="date"
                 placeholder="Datum"
-              />
+              required/>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
                 type="time"
                 class="form-control"
-                name="time"
+                name="dolazak"
                 id="time_1"
                 placeholder="Od(vreme)"
-              />
+              required/>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
                 type="time"
                 class="form-control"
-                name="time"
+                name="odlazak"
                 id="time_2"
                 placeholder="Do(vreme)"
-              />
+              required/>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
@@ -138,7 +120,7 @@
           <div class="form-group">
             <textarea
               class="form-control"
-              name="message"
+              name="napomena"
               placeholder="Napomena"
             ></textarea>
           </div>
@@ -149,7 +131,6 @@
       </div>
     </section>
     <!-- End Table Reservation Form -->
-    <script src="./assets/js/script_reservation.js" />
- 
+    <script src="../assets/js/script_home.js" />
   </body>
 </html>
