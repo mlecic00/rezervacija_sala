@@ -59,6 +59,36 @@
       "razlog": "Sastanak",
       "napomena": "/",
       "id": 6
+    },
+    {
+      "sala": "108",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-03-22",
+      "dolazak": "15:00",
+      "odlazak": "16:00",
+      "razlog": "Kupovina",
+      "napomena": "/",
+      "id": 7
+    },
+    {
+      "sala": "209",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-02-24",
+      "dolazak": "16:00",
+      "odlazak": "17:00",
+      "razlog": "Tehnicki sastanak",
+      "napomena": "/",
+      "id": 8
+    },
+    {
+      "sala": "105",
+      "ime": "Dejan Trivunovic",
+      "datum": "2024-02-25",
+      "dolazak": "15:00",
+      "odlazak": "16:00",
+      "razlog": "Sastanak",
+      "napomena": "/",
+      "id": 9
     }
   ]
 }

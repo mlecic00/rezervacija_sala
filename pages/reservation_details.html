@@ -11,34 +11,54 @@
     />
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <title>Detalji rezervacije</title>
   </head>
   <body>
     <div class="container">
-        <div id="reservationDetails"></div>
-        <!-- <h1>Detalji rezervacije</h1> -->
-    <ul class="nav nav-tabs" id="navId" role="tablist">
+      <ul class="nav nav-tabs" id="navId" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" aria-current="page">Navbar</a>
+          <a class="nav-link active" data-bs-toggle="tab" aria-current="page"
+            >Navbar</a
+          >
         </li>
         <li class="nav-item" role="presentation">
-            <a href="../pages/home.html" class="nav-link" data-bs-toggle="tab">Home</a>
+          <a href="../pages/home.html" class="nav-link" data-bs-toggle="tab"
+            >Home</a
+          >
         </li>
-    </ul>
-    
-    <!-- Tab panes -->
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="tab1Id"
+          role="tabpanel"
+        ></div>
         <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
         <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
         <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
         <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+      </div>
+      <div style="text-align: center; color: #556b2f">
+        <h1>Detalji rezervacije</h1>
+      </div>
+      <div
+        class="col-12 align-items-center justify-content-between panel-1"
+        id="reservationDetails"
+        style="
+          text-align: center;
+          font-size: medium;
+          margin-top: 50px;
+          border-width: 3px;
+          border-style: solid;
+          border-color: #556b2f;
+          padding: 1em;
+        "
+      ></div>
     </div>
-    
-    </div>
-    <script src="../assets/js/script_home.js">
-    </script>
-    </body>
-    </html>
+    <script src="../assets/js/script_home.js"></script>
+  </body>
+</html>

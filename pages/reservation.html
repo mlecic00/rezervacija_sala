@@ -11,7 +11,7 @@
     />
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/np    m/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -19,29 +19,35 @@
     <section id="book-a-table" class="book-a-table">
       <div class="container" data-aos="fade-up">
         <div class="row">
-            <div class="col-12 d-flex justify-content-between">
-                <ul class="nav nav-tabs" id="navId" role="tablist">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link active"
-                        data-bs-toggle="tab"
-                        aria-current="page"
-                        >Navbar</a
-                      >
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <a href="#" onclick="window.location.replace('../pages/home.html')" class="nav-link" data-bs-toggle="tab">Home</a>
-                    </li>
-                  </ul>
-            </div>
+          <div class="col-12 d-flex justify-content-between">
+            <ul class="nav nav-tabs" id="navId" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  aria-current="page"
+                  >Navbar</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  href="#"
+                  onclick="window.location.replace('../pages/home.html')"
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  >Home</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="row">
-            <div class="col-12 d-flex justify-content-between">
-          <div class="col-md-8 offset-md-2 text-center">
-            <h2 class="text-primary">Rezervacija sale</h2>
-            <p class="mb-5">Rezervacija sale</p>
-        </div>
-        </div>
+          <div class="col-12 d-flex justify-content-between">
+            <div class="col-md-8 offset-md-2 text-center">
+              <h2 class="text-primary">Rezervacija sale</h2>
+              <p class="mb-5">Rezervacija sale</p>
+            </div>
+          </div>
         </div>
         <form action="#" id="myForm" role="form" onsubmit="visitCreate(event)">
           <div class="form-row">
@@ -70,15 +76,15 @@
                 placeholder="Ime"
               /> -->
               <select
-              class="form-control"
-              class="form-select"
-              id="ime"
-              name="ime"
-              aria-label="Default select example"
-            >
-            <option selected>Ime</option>
-            <!-- <option disabled selected>Ime</option> -->
-            </select>
+                class="form-control"
+                class="form-select"
+                id="ime"
+                name="ime"
+                aria-label="Default select example"
+              >
+                <option selected>Ime</option>
+                <!-- <option disabled selected>Ime</option> -->
+              </select>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
@@ -87,7 +93,8 @@
                 class="form-control"
                 id="date"
                 placeholder="Datum"
-              required/>
+                required
+              />
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
@@ -96,7 +103,8 @@
                 name="dolazak"
                 id="time_1"
                 placeholder="Od(vreme)"
-              required/>
+                required
+              />
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
@@ -105,7 +113,8 @@
                 name="odlazak"
                 id="time_2"
                 placeholder="Do(vreme)"
-              required/>
+                required
+              />
             </div>
             <div class="col-lg-4 col-md-6 form-group">
               <input
@@ -131,6 +140,7 @@
       </div>
     </section>
     <!-- End Table Reservation Form -->
-    <script src="../assets/js/script_home.js" />
+    <script src="../assets/js/script_home.js"></script>
+    <!-- type="text/javascript"  -->
   </body>
 </html>
