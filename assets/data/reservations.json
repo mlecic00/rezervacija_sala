@@ -69,6 +69,16 @@
       "razlog": "BIG",
       "napomena": "bice",
       "id": 17
+    },
+    {
+      "sala": "205",
+      "ime": "Dusan Dzinic",
+      "datum": "2023-12-24",
+      "dolazak": "12:00",
+      "odlazak": "14:00",
+      "razlog": "Prodaja",
+      "napomena": "/",
+      "id": 18
     }
   ]
 }

@@ -24,14 +24,14 @@ printReservations = () => {
         <td>${r.odlazak}</td>
         <td>${r.razlog}</td>
         <td>${r.napomena}</td>
-        <td><input type="button" value="update" onclick="redirectToUpdatePage(${r.id})"></td>  
+        <td><input type="button" value="update" style="background-color: #ADD8E6; font-weight: bold" onclick="redirectToUpdatePage(${r.id})"></td>  
       `;
     tableBody.appendChild(row);
   });
 };
 
 redirectToUpdatePage = (reservationId) => {
-  const reservation = reservations.find((r) => r.id === reservationId);
+  //const reservation = reservations.find((r) => r.id === reservationId);
   const queryParams = `id=${reservationId}`;
 
   window.location.replace(`../pages/reservation_update.html?${queryParams}`);
