@@ -49,13 +49,13 @@
             </div>
           </div>
         </div>
-        <form action="#" id="myForm" role="form" onsubmit="visitCreate(event)">
+        <form action="#" id="myForm" role="form" onsubmit="updateRes(event)">
           <div class="form-row">
             <div class="col-lg-4 col-md-6 form-group">
               <select
                 class="form-control"
                 class="form-select"
-                id="sala"
+                id="sala_update"
                 name="sala"
                 aria-label="Default select example"
               >
@@ -78,7 +78,7 @@
               <select
                 class="form-control"
                 class="form-select"
-                id="ime"
+                id="ime_update"
                 name="ime"
                 aria-label="Default select example"
               >
@@ -91,7 +91,7 @@
                 type="date"
                 name="datum"
                 class="form-control"
-                id="date"
+                id="date_update"
                 placeholder="Datum"
                 required
               />
@@ -101,7 +101,7 @@
                 type="time"
                 class="form-control"
                 name="dolazak"
-                id="time_1"
+                id="time_1_update"
                 placeholder="Od(vreme)"
                 required
               />
@@ -111,7 +111,7 @@
                 type="time"
                 class="form-control"
                 name="odlazak"
-                id="time_2"
+                id="time_2_update"
                 placeholder="Do(vreme)"
                 required
               />
@@ -121,7 +121,7 @@
                 type="text"
                 class="form-control"
                 name="razlog"
-                id="razlog"
+                id="razlog_update"
                 placeholder="Razlog"
               />
             </div>
@@ -130,12 +130,12 @@
             <textarea
               class="form-control"
               name="napomena"
-              id="napomena"
+              id="napomena_update"
               placeholder="Napomena"
             ></textarea>
           </div>
           <button type="submit" class="btn btn-primary float-right mt-3">
-            Rezervisi
+            Update
           </button>
         </form>
       </div>

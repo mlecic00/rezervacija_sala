@@ -1,94 +1,74 @@
 {
   "reservations": [
     {
-      "sala": "108",
-      "ime": "Milos Lecic",
-      "datum": "2024-03-22",
-      "dolazak": "15:00",
-      "odlazak": "16:00",
-      "razlog": "filteri",
-      "napomena": "Brzo",
-      "id": 1
-    },
-    {
-      "sala": "305",
-      "ime": "Milos Lecic",
-      "datum": "2023-12-21",
-      "dolazak": "15:30",
-      "odlazak": "16:00",
-      "razlog": "Stolovi",
-      "napomena": "/",
-      "id": 2
-    },
-    {
       "sala": "209",
-      "ime": "Jovan Jovanovic",
-      "datum": "2024-04-01",
-      "dolazak": "12:00",
-      "odlazak": "13:00",
-      "razlog": "promocja",
-      "napomena": "/",
-      "id": 3
+      "ime": "Dejan Trivunovic",
+      "datum": "2023-12-30",
+      "dolazak": "11:53",
+      "odlazak": "12:53",
+      "razlog": "Update ",
+      "napomena": "Redovan sastanak",
+      "id": 6
     },
     {
       "sala": "105",
-      "ime": "Milos Lecic",
+      "ime": "Nikola Jevric",
       "datum": "2024-02-21",
       "dolazak": "15:00",
       "odlazak": "16:00",
-      "razlog": "filteri",
-      "napomena": "Brzo",
-      "id": 4
+      "razlog": "Sastanak saa klijentom",
+      "napomena": "200",
+      "id": 12
     },
     {
-      "sala": "105",
-      "ime": "Predrag",
-      "datum": "2023-12-27",
-      "dolazak": "13:15",
-      "odlazak": "14:00",
-      "razlog": "Vodoinstalater",
+      "sala": "209",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-02-26",
+      "dolazak": "13:00",
+      "odlazak": "13:30",
+      "razlog": "Sastanak saa klijentom",
       "napomena": "/",
-      "id": 5
+      "id": 13
+    },
+    {
+      "sala": "209",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-01-19",
+      "dolazak": "13:30",
+      "odlazak": "14:00",
+      "razlog": "razgovor za praksu",
+      "napomena": "/",
+      "id": 14
+    },
+    {
+      "sala": "209",
+      "ime": "Dejan Trivunovic",
+      "datum": "2024-04-30",
+      "dolazak": "13:04",
+      "odlazak": "14:05",
+      "razlog": "SUleeee",
+      "napomena": "...",
+      "id": 15
+    },
+    {
+      "sala": "108",
+      "ime": "Dejan Trivunovic",
+      "datum": "2023-12-17",
+      "dolazak": "16:05",
+      "odlazak": "17:05",
+      "razlog": "Sastanak",
+      "napomena": "/",
+      "id": 16
     },
     {
       "sala": "305",
       "ime": "Nikola Jevric",
-      "datum": "2024-02-15",
-      "dolazak": "15:00",
-      "odlazak": "16:00",
-      "razlog": "Sastanak",
-      "napomena": "/",
-      "id": 6
-    },
-    {
-      "sala": "108",
-      "ime": "Dusan Dzinic",
-      "datum": "2024-03-22",
-      "dolazak": "15:00",
-      "odlazak": "16:00",
-      "razlog": "Kupovina",
-      "napomena": "/",
-      "id": 7
-    },
-    {
-      "sala": "209",
-      "ime": "Dusan Dzinic",
-      "datum": "2024-02-24",
-      "dolazak": "16:00",
-      "odlazak": "17:00",
-      "razlog": "Tehnicki sastanak",
-      "napomena": "/",
-      "id": 8
-    },
-    {
-      "sala": "105",
-      "ime": "Dejan Trivunovic",
-      "datum": "2024-02-25",
-      "dolazak": "15:00",
-      "odlazak": "16:00",
-      "razlog": "Sastanak",
-      "napomena": "/",
-      "id": 9
+      "datum": "2024-03-25",
+      "dolazak": "12:00",
+      "odlazak": "14:00",
+      "razlog": "BIG",
+      "napomena": "bice",
+      "id": 17
     }
   ]
 }
