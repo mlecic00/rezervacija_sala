@@ -41,21 +41,11 @@
       "id": 14
     },
     {
-      "sala": "209",
-      "ime": "Dejan Trivunovic",
-      "datum": "2024-04-30",
-      "dolazak": "13:04",
-      "odlazak": "14:05",
-      "razlog": "SUleeee",
-      "napomena": "...",
-      "id": 15
-    },
-    {
       "sala": "108",
       "ime": "Dejan Trivunovic",
       "datum": "2023-12-17",
-      "dolazak": "16:05",
-      "odlazak": "17:05",
+      "dolazak": "16:20",
+      "odlazak": "17:10",
       "razlog": "Sastanak",
       "napomena": "/",
       "id": 16
@@ -79,6 +69,16 @@
       "razlog": "Prodaja",
       "napomena": "/",
       "id": 18
+    },
+    {
+      "sala": "108",
+      "ime": "Milos Lecic",
+      "datum": "2024-07-22",
+      "dolazak": "12:15",
+      "odlazak": "13:00",
+      "razlog": "Razgovor",
+      "napomena": "Poslovno",
+      "id": 19
     }
   ]
 }

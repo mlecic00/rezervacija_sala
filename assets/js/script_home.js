@@ -88,7 +88,7 @@ if (window.location.toString().includes("reservation_update.html")) {
   fetch(`http://localhost:3000/reservations/${reservationId}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       // document.querySelector("#id").value = data.id;
       document.querySelector("#sala_update").value = data.sala;
       document.querySelector("#ime_update").value = data.ime;
@@ -144,8 +144,6 @@ const visitCreate = async (event) => {
       .catch((err) => {
         console.log(err);
       });
-  } else {
-    //alert('Greska');
   }
 };
 
@@ -195,14 +193,21 @@ const updateRes = async (event) => {
   // Get the query parameters from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const Resid = urlParams.get("id");
-  await getFormValues();
+  //await getFormValues();
+  const formEl = document.querySelector("#myForm");
+  let myData = new FormData(formEl);
 
   if (submit_form) {
     const formEl = document.querySelector("#myForm");
     const formData = new FormData(formEl);
 
     // Convert FormData to a plain JavaScript object
-    updateData = Object.fromEntries(formData);
+    let updateData = Object.fromEntries(formData);
+    if (await isDuplicateTime(myData, Resid)) {
+      alert("Vreme je vec rezervisano.");
+      submit_form = false;
+      return;
+    }
 
     console.log("Resid", Resid);
     fetch(`http://localhost:3000/reservations/${Resid}`, {
@@ -218,6 +223,32 @@ const updateRes = async (event) => {
         console.error("Error updating reservation:", err);
       });
   }
+};
+
+const isDuplicateTime = async (formData, updateResId) => {
+  const selectedTime = formData.get("dolazak");
+  const selectedDate = formData.get("datum");
+
+  const allReservations = await fetch("http://localhost:3000/reservations")
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error("Error fetching reservations:", err);
+      return [];
+    });
+
+  // Zelimo samo ovaj id
+  const otherReservations = allReservations.filter(
+    (reservation) => reservation.id != updateResId
+  );
+  // console.log(updateResId);
+  // console.log(allReservations);
+  // console.log(otherReservations);
+
+  // Vreme isto u nekim rezervacijama
+  return otherReservations.some(
+    (reservation) =>
+      reservation.dolazak === selectedTime && reservation.datum === selectedDate
+  );
 };
 
 if (window.location.toString().includes("reservation_details.html")) {
@@ -251,48 +282,4 @@ if (window.location.toString().includes("reservation_details.html")) {
       })
       .catch((error) => console.error("Error loading JSON:", error));
   }
-}
-
-{
-  /*
-// Function to update reservation
-const updateReservation = (reservationId) => {
-  // Fetch the reservation data based on ID or construct the data you want to update
-  const updatedData = { status: "confirmed" }; // Replace with the fields you want to update
-
-  // Call the function to display the update form or modal
-  displayUpdateForm(reservationId, updatedData);
-};
-
-// Function to display update form or modal
-const displayUpdateForm = (reservationId, updatedData) => {
-  // Your logic to display a form or modal with input fields for updating data
-  // ...
-
-  // After the user submits the form or modal, save the changes and redirect
-  saveChangesAndRedirect(reservationId, updatedData);
-};
-
-// Function to save changes and redirect
-const saveChangesAndRedirect = (reservationId, updatedData) => {
-  // Your logic to save changes, for example, using fetch with a PUT request
-  fetch(`http://localhost:3000/reservations/${reservationId}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedData),
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log("PUT request successful:", json);
-
-      window.location.replace("/pages/reservation_update.html");
-    })
-    .catch((err) => {
-      console.error("Error updating reservation:", err);
-    });
-};
-
-// Example usage:
-printReservations(); // Call the function to print reservations with update buttons
-*/
 }
