@@ -228,6 +228,7 @@ const updateRes = async (event) => {
 const isDuplicateTime = async (formData, updateResId) => {
   const selectedTime = formData.get("dolazak");
   const selectedDate = formData.get("datum");
+  const selectedSala = formData.get("sala");
 
   const allReservations = await fetch("http://localhost:3000/reservations")
     .then((res) => res.json())
@@ -247,7 +248,9 @@ const isDuplicateTime = async (formData, updateResId) => {
   // Vreme isto u nekim rezervacijama
   return otherReservations.some(
     (reservation) =>
-      reservation.dolazak === selectedTime && reservation.datum === selectedDate
+      reservation.sala === selectedSala &&
+      reservation.dolazak === selectedTime &&
+      reservation.datum === selectedDate
   );
 };
 
