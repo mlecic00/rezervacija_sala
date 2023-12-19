@@ -3,10 +3,7 @@ async function fetchReservations() {
   await fetch("/assets/data/reservations.json")
     .then((response) => response.json())
     .then((data) => {
-      //console.log(data)
-      // Ispisi rezervacije
-      reservations = data.reservations; // Niz rezervacije globalno
-      //printReservations(reservations)
+      reservations = data.reservations;
     })
     .catch((error) => console.error("Error loading JSON:", error));
 }
@@ -24,24 +21,17 @@ printReservations = () => {
         <td>${r.odlazak}</td>
         <td>${r.razlog}</td>
         <td>${r.napomena}</td>
-        <td><input type="button" value="update" style="background-color: #ADD8E6; font-weight: bold" onclick="redirectToUpdatePage(${r.id})"></td>  
+        <td><input type="button" value="update" class="btn btn-primary" onclick="redirectToUpdatePage(${r.id})"></td>  
       `;
     tableBody.appendChild(row);
   });
 };
 
 redirectToUpdatePage = (reservationId) => {
-  //const reservation = reservations.find((r) => r.id === reservationId);
   const queryParams = `id=${reservationId}`;
 
   window.location.replace(`../pages/reservation_update.html?${queryParams}`);
 };
-
-// redirectToUpdatePage = (reservationId) => {
-//   window.location.replace(
-//     `../pages/reservation_update.html?id=${reservationId}`
-//   );
-// };
 
 if (window.location.toString().includes("home.html")) {
   (async function main() {
@@ -55,7 +45,6 @@ if (window.location.toString().includes("reservation.html")) {
     .then((response) => response.json())
     .then((data) => {
       const ime_el = document.getElementById("ime");
-      //  console.log(data)
       data.users.forEach(function (user) {
         var option = document.createElement("option");
         option.value = user.name;
@@ -71,7 +60,6 @@ if (window.location.toString().includes("reservation_update.html")) {
     .then((response) => response.json())
     .then((data) => {
       const ime_el = document.getElementById("ime_update");
-      //  console.log(data)
       data.users.forEach(function (user) {
         var option = document.createElement("option");
         option.value = user.name;
@@ -81,15 +69,12 @@ if (window.location.toString().includes("reservation_update.html")) {
     })
     .catch((error) => console.error("Error fetching JSON:", error));
 
-  // Get the query parameters from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const reservationId = urlParams.get("id");
   console.log(reservationId);
   fetch(`http://localhost:3000/reservations/${reservationId}`)
     .then((response) => response.json())
     .then((data) => {
-      //console.log(data);
-      // document.querySelector("#id").value = data.id;
       document.querySelector("#sala_update").value = data.sala;
       document.querySelector("#ime_update").value = data.ime;
       document.querySelector("#date_update").value = data.datum;
@@ -99,8 +84,6 @@ if (window.location.toString().includes("reservation_update.html")) {
       document.querySelector("#napomena_update").value = data.napomena;
     })
     .catch((error) => console.error("Error loading JSON:", error));
-
-  // Use the retrieved data to pre-fill the form
 }
 
 let submit_form = true;
@@ -108,9 +91,6 @@ let data;
 const getFormValues = async () => {
   const formEl = document.querySelector("#myForm");
   let myData = new FormData(formEl);
-  //console.log(reservations)
-  // Validation logic
-  // Using trim() function to validate if imeValue has blank space
   const imeValue = myData.get("ime");
   if (imeValue === "Ime" || (await isDuplicateReservation(myData))) {
     alert("Nije uneto ime ili je datum vec rezervisan");
@@ -118,7 +98,6 @@ const getFormValues = async () => {
   } else {
     submit_form = true;
   }
-  // console.log(Object.fromEntries(myData));
 };
 
 const visitCreate = async (event) => {
@@ -129,7 +108,6 @@ const visitCreate = async (event) => {
     const formEl = document.querySelector("#myForm");
     const formData = new FormData(formEl);
 
-    // Convert FormData to a plain JavaScript object
     data = Object.fromEntries(formData);
 
     fetch("http://localhost:3000/reservations", {
@@ -149,7 +127,6 @@ const visitCreate = async (event) => {
 
 async function isDuplicateReservation(myData) {
   await fetchReservations();
-  //console.log(myData.get('datum'))
   return reservations.some(
     (reservation) =>
       reservation.sala == myData.get("sala") &&
@@ -162,12 +139,13 @@ function deleteSelected() {
   const table = document.getElementById("table");
   const checkboxes = table.querySelectorAll('input[type="checkbox"]:checked');
 
+  if (checkboxes.length === 0) {
+    alert("Oznacite korisnika koga zelite da obrisete!");
+    return;
+  }
+
   checkboxes.forEach((checkbox) => {
-    //const row = checkbox.closest("tr");
-    //const id = row.cells[0].innerText;
     const id = checkbox.id;
-    //table.deleteRow(row.rowIndex);
-    //alert(id)
 
     fetch(`http://localhost:3000/reservations/${id}`, {
       method: "DELETE",
@@ -190,10 +168,8 @@ function deleteSelected() {
 
 const updateRes = async (event) => {
   event.preventDefault();
-  // Get the query parameters from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const Resid = urlParams.get("id");
-  //await getFormValues();
   const formEl = document.querySelector("#myForm");
   let myData = new FormData(formEl);
 
@@ -201,7 +177,6 @@ const updateRes = async (event) => {
     const formEl = document.querySelector("#myForm");
     const formData = new FormData(formEl);
 
-    // Convert FormData to a plain JavaScript object
     let updateData = Object.fromEntries(formData);
     if (await isDuplicateTime(myData, Resid)) {
       alert("Vreme je vec rezervisano.");
@@ -237,15 +212,9 @@ const isDuplicateTime = async (formData, updateResId) => {
       return [];
     });
 
-  // Zelimo samo ovaj id
   const otherReservations = allReservations.filter(
     (reservation) => reservation.id != updateResId
   );
-  // console.log(updateResId);
-  // console.log(allReservations);
-  // console.log(otherReservations);
-
-  // Vreme isto u nekim rezervacijama
   return otherReservations.some(
     (reservation) =>
       reservation.sala === selectedSala &&
@@ -255,22 +224,18 @@ const isDuplicateTime = async (formData, updateResId) => {
 };
 
 if (window.location.toString().includes("reservation_details.html")) {
-  // Url parametre dohvatamo
   const urlParams = new URLSearchParams(window.location.search);
   const reservationId = parseInt(urlParams.get("id"));
   getDetailsById(reservationId);
 
   function getDetailsById(targetId) {
-    // const reservation = reservations.find(item => item.id === targetId);
     let reservation;
     const reservationDetailsDiv = document.getElementById("reservationDetails");
 
     fetch(`http://localhost:3000/reservations/${targetId}`)
       .then((response) => response.json())
       .then((data) => {
-        // Ispisi rezervacije
-        // console.log(data)
-        reservation = data; // Niz rezervacije globalno
+        reservation = data;
         reservationDetailsDiv.innerHTML = `
            <h2><Detalji rezervacije/h2>
            <p>Sala: ${reservation.sala}</p>
@@ -281,7 +246,6 @@ if (window.location.toString().includes("reservation_details.html")) {
            <p>Razlog: ${reservation.razlog}</p>
            <p>Napomena: ${reservation.napomena}</p>
          `;
-        // printReservations(reservations);
       })
       .catch((error) => console.error("Error loading JSON:", error));
   }
