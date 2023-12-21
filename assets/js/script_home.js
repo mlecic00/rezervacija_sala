@@ -8,6 +8,7 @@ async function fetchReservations() {
     .catch((error) => console.error("Error loading JSON:", error));
 }
 
+// redirectToUpdatePage(${r.id})
 printReservations = () => {
   const tableBody = document.getElementById("table_body");
   reservations.forEach((r) => {
@@ -21,7 +22,7 @@ printReservations = () => {
         <td>${r.odlazak}</td>
         <td>${r.razlog}</td>
         <td>${r.napomena}</td>
-        <td><input type="button" value="update" class="btn btn-primary" onclick="redirectToUpdatePage(${r.id})"></td>  
+        <td><input type="button" value="update" class="btn btn-primary" onclick="location.href='../pages/reservation_update.html?id=${r.id}'"></td>  
       `;
     tableBody.appendChild(row);
   });
@@ -29,7 +30,6 @@ printReservations = () => {
 
 redirectToUpdatePage = (reservationId) => {
   const queryParams = `id=${reservationId}`;
-
   window.location.replace(`../pages/reservation_update.html?${queryParams}`);
 };
 
@@ -100,9 +100,18 @@ const getFormValues = async () => {
   }
 };
 
+function fetchData() {
+  return new Promise((resolve) =>
+    setTimeout(resolve, 5000, "Uspesna rezervacija!")
+  );
+}
+
 const visitCreate = async (event) => {
   event.preventDefault();
   await getFormValues();
+  const button_2 = document.querySelector("#button_2");
+  const loader = document.querySelector("#loader");
+  const content = document.querySelector("#content");
 
   if (submit_form) {
     const formEl = document.querySelector("#myForm");
@@ -117,6 +126,13 @@ const visitCreate = async (event) => {
     })
       .then((res) => res.json())
       .then((json) => {
+        button_2.onclick = async function () {
+          content.innerHTML = "";
+          loader.style.display = "block";
+          const nextContent = await fetchData();
+          loader.style.display = "none";
+          content.innerHTML = nextContent;
+        };
         window.location.replace("/pages/home.html");
       })
       .catch((err) => {
@@ -135,12 +151,12 @@ async function isDuplicateReservation(myData) {
   );
 }
 
-function deleteSelected() {
+function deleteSelectedRes() {
   const table = document.getElementById("table");
   const checkboxes = table.querySelectorAll('input[type="checkbox"]:checked');
 
   if (checkboxes.length === 0) {
-    alert("Oznacite korisnika koga zelite da obrisete!");
+    alert("Oznacite korisnika kog zelite da uklonite!");
     return;
   }
 

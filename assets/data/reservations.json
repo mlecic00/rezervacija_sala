@@ -6,7 +6,7 @@
       "datum": "2023-12-30",
       "dolazak": "11:53",
       "odlazak": "12:53",
-      "razlog": "Update ",
+      "razlog": "Update",
       "napomena": "Redovan sastanak",
       "id": 6
     },
@@ -57,7 +57,7 @@
       "dolazak": "12:00",
       "odlazak": "14:00",
       "razlog": "BIG",
-      "napomena": "bice",
+      "napomena": "novi",
       "id": 17
     },
     {
@@ -79,6 +79,16 @@
       "razlog": "Razgovor",
       "napomena": "Poslovno",
       "id": 19
+    },
+    {
+      "sala": "209",
+      "ime": "Nemanja Kasanov",
+      "datum": "2024-05-22",
+      "dolazak": "14:00",
+      "odlazak": "14:30",
+      "razlog": "PIO",
+      "napomena": "Novi ugovor",
+      "id": 20
     }
   ]
 }
