@@ -51,16 +51,6 @@
       "id": 16
     },
     {
-      "sala": "305",
-      "ime": "Nikola Jevric",
-      "datum": "2024-03-25",
-      "dolazak": "12:00",
-      "odlazak": "14:00",
-      "razlog": "BIG",
-      "napomena": "novi",
-      "id": 17
-    },
-    {
       "sala": "205",
       "ime": "Dusan Dzinic",
       "datum": "2023-12-24",
@@ -89,6 +79,26 @@
       "razlog": "PIO",
       "napomena": "Novi ugovor",
       "id": 20
+    },
+    {
+      "sala": "205",
+      "ime": "Nikola Jevric",
+      "datum": "2023-12-28",
+      "dolazak": "12:00",
+      "odlazak": "13:00",
+      "razlog": "Update prodaja",
+      "napomena": "/\n",
+      "id": 21
+    },
+    {
+      "sala": "209",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-01-11",
+      "dolazak": "10:00",
+      "odlazak": "11:00",
+      "razlog": "Podela posla",
+      "napomena": "/\n",
+      "id": 22
     }
   ]
 }

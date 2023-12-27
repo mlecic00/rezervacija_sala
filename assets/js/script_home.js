@@ -1,17 +1,59 @@
+class VisitService {
+  constructor() {
+    this.urlExtension = "http://localhost:3000/reservations";
+  }
+
+  async get() {
+    return await fetch(`${this.urlExtension}/`);
+  }
+
+  async details(identifier) {
+    return await fetch(`${this.urlExtension}/${identifier}/`);
+  }
+
+  async create(data) {
+    return await fetch(`${this.urlExtension}/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  }
+
+  async update(identifier, updateData) {
+    return await fetch(`${this.urlExtension}/${identifier}/`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updateData),
+    });
+  }
+
+  async delete(identifier) {
+    return await fetch(`${this.urlExtension}/${identifier}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+}
+
+const visitService = new VisitService();
+
 let reservations = [];
 async function fetchReservations() {
-  await fetch("/assets/data/reservations.json")
+  visitService
+    .get()
     .then((response) => response.json())
     .then((data) => {
-      reservations = data.reservations;
+      reservations = data;
+      printReservations(reservations);
     })
     .catch((error) => console.error("Error loading JSON:", error));
 }
 
-// redirectToUpdatePage(${r.id})
-printReservations = () => {
+printReservations = (data) => {
   const tableBody = document.getElementById("table_body");
-  reservations.forEach((r) => {
+  data.forEach((r) => {
     const row = document.createElement("tr");
     row.innerHTML = `
         <td><input type="checkbox" id="${r.id}"></td>
@@ -106,6 +148,11 @@ function fetchData() {
   );
 }
 
+const handleError = (error) => {
+  alert("Greska, pokusajte ponovo.");
+  console.error("Error handling:", error);
+};
+
 const visitCreate = async (event) => {
   event.preventDefault();
   await getFormValues();
@@ -119,25 +166,22 @@ const visitCreate = async (event) => {
 
     data = Object.fromEntries(formData);
 
-    fetch("http://localhost:3000/reservations", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        button_2.onclick = async function () {
-          content.innerHTML = "";
-          loader.style.display = "block";
-          const nextContent = await fetchData();
-          loader.style.display = "none";
-          content.innerHTML = nextContent;
-        };
-        window.location.replace("/pages/home.html");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    loader.style.display = "block";
+
+    try {
+      button_2.onclick = async function () {
+        content.innerHTML = "";
+        loader.style.display = "block";
+      };
+      setTimeout(() => {
+        visitService.create(data).then(() => {
+          window.location.replace("/pages/home.html");
+        });
+      }, 3000);
+    } catch (err) {
+      handleError(err);
+      loader.style.display = "none";
+    }
   }
 };
 
@@ -151,7 +195,7 @@ async function isDuplicateReservation(myData) {
   );
 }
 
-function deleteSelectedRes() {
+async function deleteSelectedRes() {
   const table = document.getElementById("table");
   const checkboxes = table.querySelectorAll('input[type="checkbox"]:checked');
 
@@ -160,25 +204,24 @@ function deleteSelectedRes() {
     return;
   }
 
-  checkboxes.forEach((checkbox) => {
+  checkboxes.forEach(async (checkbox) => {
     const id = checkbox.id;
 
-    fetch(`http://localhost:3000/reservations/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(`Element ciji je id: ${id} je obrisan.`, data);
-      })
-      .catch((error) => console.error("Error:", error));
+    try {
+      visitService
+        .delete(id)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(`Element ciji je id: ${id} je obrisan.`, data);
+        });
+    } catch (error) {
+      handleError(error);
+    }
   });
 }
 
@@ -200,19 +243,16 @@ const updateRes = async (event) => {
       return;
     }
 
-    console.log("Resid", Resid);
-    fetch(`http://localhost:3000/reservations/${Resid}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updateData),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        window.location.replace("../pages/home.html");
-      })
-      .catch((err) => {
-        console.error("Error updating reservation:", err);
-      });
+    try {
+      visitService
+        .update(Resid, updateData)
+        .then((res) => res.json())
+        .then((json) => {
+          window.location.replace("../pages/home.html");
+        });
+    } catch (err) {
+      handleError(err);
+    }
   }
 };
 
@@ -247,12 +287,13 @@ if (window.location.toString().includes("reservation_details.html")) {
   function getDetailsById(targetId) {
     let reservation;
     const reservationDetailsDiv = document.getElementById("reservationDetails");
-
-    fetch(`http://localhost:3000/reservations/${targetId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        reservation = data;
-        reservationDetailsDiv.innerHTML = `
+    try {
+      visitService
+        .details(targetId)
+        .then((response) => response.json())
+        .then((data) => {
+          reservation = data;
+          reservationDetailsDiv.innerHTML = `
            <h2><Detalji rezervacije/h2>
            <p>Sala: ${reservation.sala}</p>
            <p>Ime: ${reservation.ime}</p> 
@@ -262,7 +303,9 @@ if (window.location.toString().includes("reservation_details.html")) {
            <p>Razlog: ${reservation.razlog}</p>
            <p>Napomena: ${reservation.napomena}</p>
          `;
-      })
-      .catch((error) => console.error("Error loading JSON:", error));
+        });
+    } catch (err) {
+      handleError(err);
+    }
   }
 }
