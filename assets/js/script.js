@@ -29,3 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 });
+
+const mail = document.querySelector("#email");
+mail.addEventListener("keyup", keepValue);
+function keepValue() {
+  localStorage.setItem("email", mail.value);
+  console.log(localStorage.getItem("email"));
+}
