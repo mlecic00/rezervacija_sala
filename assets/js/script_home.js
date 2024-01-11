@@ -40,19 +40,43 @@ class VisitService {
 const visitService = new VisitService();
 
 let reservations = [];
+
 async function fetchReservations() {
-  visitService
-    .get()
-    .then((response) => response.json())
-    .then((data) => {
-      reservations = data;
-      printReservations(reservations);
-    })
-    .catch((error) => console.error("Error loading JSON:", error));
+  return visitService.get().then((response) => response.json());
 }
 
 printReservations = (data) => {
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+  function getQueryParam(param) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(param);
+  }
   const tableBody = document.getElementById("table_body");
+  const perPage = parseInt(getQueryParam("perPage")) || 15;
+
+  if (window.location.pathname.endsWith("home.html")) {
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set("perPage", perPage);
+    window.history.replaceState({}, "", newUrl);
+  }
+
+  const updatePerPage = (selectedPerPage) => {
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set("perPage", selectedPerPage);
+    window.history.replaceState({}, "", newUrl);
+    location.reload();
+  };
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function (event) {
+      event.preventDefault();
+      const selectedPerPage = item.getAttribute("value");
+      updatePerPage(selectedPerPage);
+    });
+  });
+  if (perPage) {
+    data = data.slice(0, perPage);
+  }
   data.forEach((r) => {
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -77,7 +101,7 @@ redirectToUpdatePage = (reservationId) => {
 
 if (window.location.toString().includes("home.html")) {
   (async function main() {
-    await fetchReservations();
+    reservations = await fetchReservations();
     printReservations(reservations);
   })();
 }
@@ -133,8 +157,14 @@ let data;
 const getFormValues = async () => {
   const formEl = document.querySelector("#myForm");
   let myData = new FormData(formEl);
+  let data = Object.fromEntries(myData);
   const imeValue = myData.get("ime");
-  if (imeValue === "Ime" || (await isDuplicateReservation(myData))) {
+  const salaValue = myData.get("sala");
+  if (
+    salaValue === "Sala" ||
+    imeValue === "Ime" ||
+    (await isDuplicateReservation(data))
+  ) {
     alert("Nije uneto ime ili je datum vec rezervisan");
     submit_form = false;
   } else {
@@ -185,16 +215,6 @@ const visitCreate = async (event) => {
   }
 };
 
-async function isDuplicateReservation(myData) {
-  await fetchReservations();
-  return reservations.some(
-    (reservation) =>
-      reservation.sala == myData.get("sala") &&
-      reservation.datum === myData.get("datum") &&
-      reservation.dolazak === myData.get("dolazak")
-  );
-}
-
 async function deleteSelectedRes() {
   const table = document.getElementById("table");
   const checkboxes = table.querySelectorAll('input[type="checkbox"]:checked');
@@ -237,12 +257,14 @@ const updateRes = async (event) => {
     const formData = new FormData(formEl);
 
     let updateData = Object.fromEntries(formData);
-    if (await isDuplicateTime(myData, Resid)) {
+    if (
+      (await isDuplicateTime(myData, Resid)) ||
+      (await isDuplicateReservation(updateData))
+    ) {
       alert("Vreme je vec rezervisano.");
-      submit_form = false;
       return;
     }
-
+    console.log("proslo if");
     try {
       visitService
         .update(Resid, updateData)
@@ -309,3 +331,136 @@ if (window.location.toString().includes("reservation_details.html")) {
     }
   }
 }
+async function deleteRes() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = parseInt(urlParams.get("id"));
+
+  try {
+    visitService
+      .delete(id)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        window.location.replace("../pages/home.html");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(`Element ciji je id: ${id} je obrisan.`, data);
+      });
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+async function isDuplicateReservation(newReservation) {
+  let reservationLocal = await fetchReservations();
+  return reservationLocal.some((reservation) => {
+    const isSameSalaAndDate =
+      reservation.sala === newReservation.sala &&
+      reservation.datum === newReservation.datum;
+
+    if (isSameSalaAndDate) {
+      const startTime1 = new Date(`2000-01-01T${reservation.dolazak}`);
+      const endTime1 = new Date(`2000-01-01T${reservation.odlazak}`);
+      const startTime2 = new Date(`2000-01-01T${newReservation.dolazak}`);
+      const endTime2 = new Date(`2000-01-01T${newReservation.odlazak}`);
+
+      const doTimeRangesOverlap =
+        (startTime2 > startTime1 && endTime2 < endTime1) ||
+        (startTime1 > startTime2 && endTime2 > endTime1) ||
+        (startTime2 < startTime1 &&
+          endTime2 < endTime1 &&
+          endTime2 > startTime1) ||
+        (startTime2 > startTime1 &&
+          startTime2 < endTime1 &&
+          endTime2 > endTime1) ||
+        (startTime2 < startTime1 && endTime2 < endTime1);
+
+      return doTimeRangesOverlap;
+    }
+
+    return false;
+  });
+}
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("table");
+  switching = true;
+
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[3];
+
+      y = rows[i + 1].getElementsByTagName("td")[3];
+
+      if (new Date(x.textContent) > new Date(y.textContent)) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+function MyFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.querySelector("#table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   function getQueryParam(param) {
+//     const queryString = window.location.search;
+//     const urlParams = new URLSearchParams(queryString);
+//     return urlParams.get(param);
+//   }
+//   function updateTable() {
+//     const perPage = parseInt(getQueryParam("perPage")) || 10;
+
+//     if (window.location.pathname.endsWith("home.html")) {
+//       const newUrl = new URL(window.location.href);
+//       newUrl.searchParams.set("perPage", perPage);
+//       window.history.replaceState({}, "", newUrl);
+//     }
+//     const tableBody = document.querySelector("#table_body");
+//     const rows = tableBody.getElementsByTagName("tr");
+//     console.log(rows);
+//     rows_length = rows.length;
+//     for (let i = 1; i < rows_length; i++) {
+//       if (i < perPage) {
+//         rows[i].style.display = "";
+//       } else {
+//         rows[i].style.display = "none";
+//       }
+//     }
+//   }
+
+//   updateTable();
+//   window.addEventListener("popstate", function () {
+//     updateTable();
+//   });
+// });
