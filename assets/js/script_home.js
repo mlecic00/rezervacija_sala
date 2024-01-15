@@ -431,36 +431,3 @@ function MyFilter() {
     }
   }
 }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   function getQueryParam(param) {
-//     const queryString = window.location.search;
-//     const urlParams = new URLSearchParams(queryString);
-//     return urlParams.get(param);
-//   }
-//   function updateTable() {
-//     const perPage = parseInt(getQueryParam("perPage")) || 10;
-
-//     if (window.location.pathname.endsWith("home.html")) {
-//       const newUrl = new URL(window.location.href);
-//       newUrl.searchParams.set("perPage", perPage);
-//       window.history.replaceState({}, "", newUrl);
-//     }
-//     const tableBody = document.querySelector("#table_body");
-//     const rows = tableBody.getElementsByTagName("tr");
-//     console.log(rows);
-//     rows_length = rows.length;
-//     for (let i = 1; i < rows_length; i++) {
-//       if (i < perPage) {
-//         rows[i].style.display = "";
-//       } else {
-//         rows[i].style.display = "none";
-//       }
-//     }
-//   }
-
-//   updateTable();
-//   window.addEventListener("popstate", function () {
-//     updateTable();
-//   });
-// });

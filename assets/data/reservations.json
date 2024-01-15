@@ -101,14 +101,14 @@
       "id": 22
     },
     {
-      "sala": "105",
-      "ime": "Milos Lecic",
-      "datum": "2024-01-19",
-      "dolazak": "12:45",
-      "odlazak": "13:15",
-      "razlog": "Sastanak",
+      "sala": "205",
+      "ime": "Dusan Dzinic",
+      "datum": "2024-01-24",
+      "dolazak": "14:00",
+      "odlazak": "15:20",
+      "razlog": "Potpisivanje ugovora",
       "napomena": "/",
-      "id": 23
+      "id": 24
     }
   ]
 }
